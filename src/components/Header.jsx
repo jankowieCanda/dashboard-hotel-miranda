@@ -17,7 +17,7 @@ const Header_Container = styled.header`
 const Title = styled.h1`
     font-family: ${fonts.poppins.family};
     font-weight: ${fonts.poppins.weight};
-    font-size: 1rem;
+    font-size: 1.75rem;
     margin: 0;
 `;
 
