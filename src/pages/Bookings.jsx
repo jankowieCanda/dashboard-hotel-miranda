@@ -4,11 +4,7 @@ import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { bookings_data } from "../data";
 
-const Table_Wrapper = styled.div`
-    width: 70%;
-    margin-left: 21.568em;
-    margin-top: 7.6em;
-`;
+
 
 
 export const Bookings = (props) => {
@@ -30,9 +26,7 @@ export const Bookings = (props) => {
     return(
         <>
             <Header title={'Bookings'} />
-            <Table_Wrapper>
-                <Data_Table cols={cols} data={data}/>
-            </Table_Wrapper>
+            <Data_Table cols={cols} data={data}/>
             <SideNav />
         </>
     );
