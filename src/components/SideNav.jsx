@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChalkboard, faKey, faPhone, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarCheck, } from '@fortawesome/free-regular-svg-icons';
