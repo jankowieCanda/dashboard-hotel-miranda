@@ -1,3 +1,6 @@
+import { Header } from "../components/Header";
+import { KPIs } from "../components/KPIs";
+import { SideNav } from "../components/SideNav";
 
 
 function App() {
@@ -5,9 +8,11 @@ function App() {
 
   return (
     <>
-     DASHBOARD
+      <Header title={'Dashboard'}/>
+      <SideNav/>
+      <KPIs />
     </>
   )
 }
 
-export default App
+export default App;
