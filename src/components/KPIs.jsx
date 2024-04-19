@@ -9,9 +9,10 @@ const KPI_Container = styled.div`
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-evenly;
-    width: 70%;
-    margin-left: 21.568em;
-    margin-top: 7.6em;
+    width: 75%;
+    margin-top: 10em;
+    margin-left: 25%;
+    padding: 1em;
 `;
 
 const KPI_Card = styled.div`
@@ -23,6 +24,7 @@ const KPI_Card = styled.div`
     justify-content: space-around;
     border-radius: ${kpis.borderRadius};
     box-shadow: ${kpis.boxShadow};
+    margin: 1em;
 `;
 
 const KPI_IconBox = styled.div`

@@ -2,16 +2,19 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope, faBell } from '@fortawesome/free-regular-svg-icons';
-import { fonts } from '../var';
+import { LOCAL_AUTH, fonts } from '../var';
+import { useNavigate } from 'react-router';
 
 const Header_Container = styled.header`
-    width: 100%;
+    width: 75%;
     height: 7.5em;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    margin-left: 21.568em;
     position: fixed;
     top: 0;
+    right: 0;
+    background-color: #ffffff;
 `;
 
 const Title = styled.h1`
@@ -19,6 +22,7 @@ const Title = styled.h1`
     font-weight: ${fonts.poppins.weight};
     font-size: 1.75rem;
     margin: 0;
+    margin-left: 1em;
 `;
 
 const Superior_Menu = styled.nav`
@@ -26,6 +30,15 @@ const Superior_Menu = styled.nav`
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
+    div:last-of-type {
+        margin-right: 3em;
+        justify-content: right;
+        
+    }
+    svg {
+        padding: 0.5em;
+        margin-left: 1em;
+    }
 `;
 
 const Nav_Wrapper = styled.div`
@@ -35,6 +48,13 @@ const Nav_Wrapper = styled.div`
 `;
 
 export const Header = (props) => {
+    const navigate = useNavigate();
+
+    const handleSignOutClick = () => {
+        localStorage.removeItem(LOCAL_AUTH);
+        props.setAuth(false);
+        navigate('/login');
+    }
 
     return(
         <>
@@ -49,7 +69,7 @@ export const Header = (props) => {
                     <Nav_Wrapper>
                         <FontAwesomeIcon icon={faEnvelope}/>
                         <FontAwesomeIcon icon={faBell}/>
-                        <FontAwesomeIcon icon={faSignOut}/>
+                        <FontAwesomeIcon icon={faSignOut} onClick={handleSignOutClick}/>
                     </Nav_Wrapper>
                 </Superior_Menu>
             </Header_Container>

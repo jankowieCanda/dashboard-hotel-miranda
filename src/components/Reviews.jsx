@@ -5,18 +5,101 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css/navigation';
 import 'swiper/css';
 import { faCheckCircle, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { fonts } from "../var";
+import { reviews_data} from '../data';
 
 const Reviews_Container = styled.div`
-    width: 70%;
-    margin-left: 21.568em;
+    width: 75%;
+    margin-left: 25%;
     position: relative;
     bottom: -15em;
+    h2 {
+        font-family: ${fonts.poppins.family};
+        font-size: 1.25rem;
+        font-weight: ${fonts.poppins.weight};
+        color: #393939;
+    }
+`;
+
+const SliderData = styled.div`
+    width: 75%;
+    margin: 1.5em auto;
+    border-radius: 10px;
+    h3 {
+        font-family: ${fonts.poppins.family};
+        font-size: 0.9rem;
+        color: #262626;
+        margin-bottom: 0.5em;
+    }
+    p {
+        font-family: ${fonts.poppins.family};
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: #4E4E4E;
+        padding: 0.5em;
+    }
+`;
+
+const CustomerData = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: left;
+    padding: 0.5em;
+    img {
+        margin: 0 0.5em;
+    }
+    p, small {
+        font-family: ${fonts.poppins.family};
+        font-size: 1rem;
+        font-weight: 700;
+        color: #262626;
+        text-align: left;
+        padding: 0;
+    }
+    small {
+        font-size: 0.875rem;
+    }
+    div:last-of-type {
+        position: absolute;
+        bottom: 0.5em;
+        right: 1.5em;
+        svg {
+            width: 2em;
+            height: 2em;
+            path {
+                fill: #E23428;
+            }
+        }
+    }
 `;
 
 export const Reviews = () => {
     const swiper = useSwiper();
     const swiperSlide = useSwiperSlide();
+
+    const data = reviews_data.map((review) => {
+        return(
+            <SwiperSlide>
+                <SliderData>
+                    <div>
+                        <h3>{review.subject}</h3>
+                        <p>{review.review}</p>   
+                    </div>
+                    <CustomerData>
+                        <img src={review.picture} alt="picture" />
+                        <div>
+                            <p>{review.customer_name}</p>
+                            <small>{review.phone}</small>
+                        </div>
+                        <div>
+                            <FontAwesomeIcon icon={faCircleXmark} />
+                        </div>
+                    </CustomerData>
+                </SliderData>
+            </SwiperSlide>
+        );
+    })
 
     return(
         <>
@@ -28,33 +111,7 @@ export const Reviews = () => {
                         slidesPerView={3}
                         navigation
                     >
-                        <SwiperSlide>
-                            <div>
-                                <h3>subject's review</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ipsam mollitia iste omnis blanditiis tempora molestias porro assumenda fugit rerum, eligendi esse laboriosam, corporis, voluptatibus aut delectus id voluptates hic!
-                                </p>
-                            </div>
-                            <div>
-                                <img src="src\assets\react.svg" alt="" />
-                                <div>
-                                    <p>customer name</p>
-                                    <small>phone number</small>
-                                </div>
-                                <div>
-                                    <FontAwesomeIcon icon={faCircleXmark} />
-                                </div>
-
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>Slide 2</SwiperSlide>
-                        <SwiperSlide>Slide 3</SwiperSlide>
-                        <SwiperSlide>Slide 4</SwiperSlide>
-                        <SwiperSlide>Slide 5</SwiperSlide>
-                        <SwiperSlide>Slide 6</SwiperSlide>
-                        <SwiperSlide>Slide 7</SwiperSlide>
-                        
-
+                        {data}
                     </Swiper>
                 </div>
             </Reviews_Container>

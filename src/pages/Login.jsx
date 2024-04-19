@@ -1,28 +1,20 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { useNavigate, Navigate } from "react-router";
+import { AUTH_EMAIL, AUTH_PASSWORD } from "../var";
 
-const authEmail = 'user@mirandashboard.com';
-const authPassword = 'mirandashboard';
+
 
 export const Login = (props) => {
-    let loginEmailRef = useRef('');
-    let passwordRef = useRef('');
+    const [emailInput, setEmailInput] = useState('');
+    const [passwordInput, setPasswordInput] = useState('');
     let navigate = useNavigate();
-
-    
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
-        let inputMail = loginEmailRef.current.value;
-        let inputPass = passwordRef.current.value;
-        /* console.log(inputMail);
-        console.log(inputPass); */
-        if(inputMail != '' && inputMail === authEmail && inputPass != '' && inputPass === authPassword) {
-            /* console.log(inputMail.value);
-            console.log(inputPass.value); */
+        
+        if(emailInput != '' && emailInput === AUTH_EMAIL && passwordInput != '' && passwordInput === AUTH_PASSWORD) {
             props.setAuth(true);
             navigate('/');
-
         }
         
     }
@@ -31,15 +23,14 @@ export const Login = (props) => {
         return(<Navigate to={'/'} />);
     }
 
-
     return(
         <>
             <h1>Welcome to MiranDashboard</h1>
             <form action="/" method="post" onSubmit={handleLoginSubmit}>
                 <label htmlFor="email">Email</label>
-                <input name="email" id="email" type="email" ref={loginEmailRef} />
+                <input value={emailInput} name="email" id="email" type="email" onChange={(e) => setEmailInput(e.target.value)} />
                 <label htmlFor="password">Password</label>
-                <input name="password" id="password" type="password" ref={passwordRef} />
+                <input value={passwordInput} name="password" id="password" type="password" onChange={(e) => setPasswordInput(e.target.value)} />
                 <input type="submit" value='Login' />
             </form>
             <div>

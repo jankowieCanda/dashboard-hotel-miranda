@@ -1,3 +1,6 @@
+export const LOCAL_AUTH = 'auth';
+export const AUTH_EMAIL = 'user@mirandashboard.com';
+export const AUTH_PASSWORD = 'mirandashboard';
 
 export const fonts = {
     poppins : {

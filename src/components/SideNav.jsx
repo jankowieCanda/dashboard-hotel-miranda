@@ -8,8 +8,7 @@ import { Logo } from './Logo';
 import { fonts } from '../var';
 
 const Nav_Container = styled.nav`
-    width: 21.563em;
-    height: 100%;
+    width: 25%;
     position: fixed;
     top: 0;
     left: 0;
