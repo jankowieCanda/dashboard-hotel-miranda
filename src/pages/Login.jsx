@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, Navigate } from "react-router";
-import { AUTH_EMAIL, AUTH_PASSWORD } from "../var";
+import { AUTH_EMAIL, AUTH_PASSWORD, LOCAL_AUTH } from "../var";
+import { AuthContext } from '../components/AuthContext';
 
 
 
-export const Login = (props) => {
+export const Login = () => {
+    const authcontext = useContext(AuthContext);
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
     let navigate = useNavigate();
@@ -13,13 +15,14 @@ export const Login = (props) => {
         e.preventDefault();
         
         if(emailInput != '' && emailInput === AUTH_EMAIL && passwordInput != '' && passwordInput === AUTH_PASSWORD) {
-            props.setAuth(true);
+            authcontext.dispatchSetAuthData('login');
+            localStorage.setItem(LOCAL_AUTH, true);
             navigate('/');
         }
         
     }
 
-    if(props.auth) {
+    if(authcontext.authData) {
         return(<Navigate to={'/'} />);
     }
 

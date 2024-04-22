@@ -4,6 +4,8 @@ import { faChevronRight, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope, faBell } from '@fortawesome/free-regular-svg-icons';
 import { LOCAL_AUTH, fonts } from '../var';
 import { useNavigate } from 'react-router';
+import { useContext } from 'react';
+import { AuthContext } from './AuthContext';
 
 const Header_Container = styled.header`
     width: 75%;
@@ -48,11 +50,12 @@ const Nav_Wrapper = styled.div`
 `;
 
 export const Header = (props) => {
+    const authcontext = useContext(AuthContext)
     const navigate = useNavigate();
 
     const handleSignOutClick = () => {
         localStorage.removeItem(LOCAL_AUTH);
-        props.setAuth(false);
+        authcontext.dispatchSetAuthData('logout');
         navigate('/login');
     }
 
