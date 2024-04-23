@@ -22,7 +22,7 @@ export const Login = () => {
         
     }
 
-    if(authcontext.authData) {
+    if(authcontext.authData === true) {
         return(<Navigate to={'/'} />);
     }
 

@@ -9,38 +9,31 @@ import { Contact } from './Contact.jsx';
 import { Login } from './Login.jsx';
 import { Dashboard } from './Dashboard.jsx';
 import { AuthProvider } from '../components/AuthContext.jsx';
-/* import { useState } from 'react';
-import { LOCAL_AUTH } from '../var.js'; */
+import { Provider } from 'react-redux';
+import { store } from '../app/store.js';
 
 
 function App() {
-  /* const [auth, setAuth] = useState(localStorage.getItem(LOCAL_AUTH) !== null);
-
-  console.log(auth)
-
-  if(auth) {
-    localStorage.setItem(LOCAL_AUTH, true);
-  }
- */
+  
   return (
     <>
-      <BrowserRouter>
-      <AuthProvider>
-        <Routes>
-          
-            <Route path='/login' element={<Login /* auth={auth} setAuth={setAuth} */ />} />
-            <Route path='/' element={<Dashboard /*  setAuth={setAuth} */ />} />
-            <Route path='/bookings' element={<Bookings />} />
-            <Route path='/bookings/:id' element={<Booking_Details />} />
-            <Route path='/rooms' element={<Rooms />} />
-            <Route path='/rooms/:id' element={<Room_Details />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/users' element={<Users />} />
-            <Route path='/users/:id' element={<User_Details />} />
-          
-        </Routes>
-        </AuthProvider>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <AuthProvider>
+            <Routes>
+              <Route path='/login' element={<Login />} />
+              <Route path='/' element={<Dashboard />} />
+              <Route path='/bookings' element={<Bookings />} />
+              <Route path='/bookings/:id' element={<Booking_Details />} />
+              <Route path='/rooms' element={<Rooms />} />
+              <Route path='/rooms/:id' element={<Room_Details />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='/users' element={<Users />} />
+              <Route path='/users/:id' element={<User_Details />} />
+            </Routes>
+          </AuthProvider>
+        </BrowserRouter>
+      </Provider>
     </>
   )
 }
