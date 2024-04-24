@@ -27,22 +27,22 @@ export const Bookings = (props) => {
             /* dispatch(fecthBookingThunk('20')); */
         }
 
-    }, [dispatch, allBookings, booking])
+    }, [dispatch, allBookings])
     
     console.log(allBookings)
     console.log(booking)
     console.log(status)
     
     const cols = [
-        {property: 'Guest', display: allBookings => allBookings.Guest},
-        {property: 'Reservation ID', display: allBookings => allBookings.Reservation_ID},
-        {property: 'Order Date', display: allBookings => allBookings.Order_Date},
-        {property: 'Check In', display: allBookings => allBookings.Check_In},
-        {property: 'Check Out', display: allBookings => allBookings.Check_Out},
+        {property: 'Guest', display: data => data.Guest},
+        {property: 'Reservation ID', display: data => data.Reservation_ID},
+        {property: 'Order Date', display: data => data.Order_Date},
+        {property: 'Check In', display: data => data.Check_In},
+        {property: 'Check Out', display: data => data.Check_Out},
         {property: 'Special Request', display: () => (<button>view notes</button>)},
-        {property: 'Room Type', display: allBookings => allBookings.Room_Type},
-        {property: 'Room Number', display: allBookings => allBookings.Room_Number},
-        {property: 'Status', display: allBookings => allBookings.Status}
+        {property: 'Room Type', display: data => data.Room_Type},
+        {property: 'Room Number', display: data => data.Room_Number},
+        {property: 'Status', display: data => data.Status}
     ];  
 
     return(
