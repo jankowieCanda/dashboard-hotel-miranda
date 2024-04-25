@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Table_Wrapper = styled.div`
     width: 70%;
-    margin-left: 21.568em;
+    margin-left: 30%;
     margin-top: 7.6em;
 `;
 

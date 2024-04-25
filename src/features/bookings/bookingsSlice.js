@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fecthAllBookingsThunk, fecthBookingThunk } from './bookingsThunk';
+import { updateBookingThunk, deleteBookingThunk, fecthAllBookingsThunk, fecthBookingThunk, createBookingThunk } from './bookingsThunk';
 
 export const bookingsSlice = createSlice({
     name: 'bookings',
@@ -9,9 +9,7 @@ export const bookingsSlice = createSlice({
         status: 'idle',
         error: null
     },
-    /* reducers: {
-       
-    }, */
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fecthAllBookingsThunk.pending, (state, action) => {
             state.status = 'pending';
@@ -22,7 +20,18 @@ export const bookingsSlice = createSlice({
             state.bookings = action.payload;
             state.status = 'fulfilled';
         }).addCase(fecthBookingThunk.fulfilled, (state, action) => {
-            state.booking = action.payload;
+            state.booking = state.bookings.filter(booking => booking.Reservation_ID === action.payload);
+            state.status = 'fulfilled';
+        }).addCase(deleteBookingThunk.fulfilled, (state, action) => {
+            state.bookings = state.bookings.filter(booking => booking.Reservation_ID !== action.payload);
+            state.status = 'fulfilled';
+        }).addCase(updateBookingThunk.fulfilled, (state, action) => {
+            let data = action.payload;
+            let index = state.bookings.findIndex(booking => booking.Reservation_ID === data.Reservation_ID)
+            state.bookings.splice(index, 1, data);
+            state.status = 'fulfilled';
+        }).addCase(createBookingThunk.fulfilled, (state, action) => {
+            state.bookings = [...state.bookings, action.payload];
             state.status = 'fulfilled';
         })
     }
