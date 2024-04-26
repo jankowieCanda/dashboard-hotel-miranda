@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 
 rutas-dashboard-hotel-miranda.txt
+src/components/PrivateRoute.jsx
 

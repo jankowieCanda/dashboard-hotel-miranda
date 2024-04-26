@@ -16,19 +16,19 @@ export const fecthBookingThunk = createAsyncThunk('bookings/fetchBooking', async
 });
 export const deleteBookingThunk = createAsyncThunk('bookings/deleteBooking', async (id) => {
     
-    const data = await delayFunction(bookings_data.filter(booking => booking.Reservation_ID !== id));
-    return data;
+    const data = await delayFunction();
+    return id;
     
 });
 export const updateBookingThunk = createAsyncThunk('bookings/updateBooking', async (obj) => {
     
-    const data = await delayFunction(obj);
-    return data;
+    const data = await delayFunction();
+    return obj;
     
 });
 export const createBookingThunk = createAsyncThunk('bookings/createBooking', async (obj) => {
     
-    const data = await delayFunction(obj);
-    return data;
+    const data = await delayFunction();
+    return obj;
     
 });

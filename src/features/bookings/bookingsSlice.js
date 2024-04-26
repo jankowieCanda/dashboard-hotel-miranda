@@ -20,15 +20,14 @@ export const bookingsSlice = createSlice({
             state.bookings = action.payload;
             state.status = 'fulfilled';
         }).addCase(fecthBookingThunk.fulfilled, (state, action) => {
-            state.booking = state.bookings.find(booking => booking.Reservation_ID === action.payload);
+            state.booking = action.payload;
             state.status = 'fulfilled';
         }).addCase(deleteBookingThunk.fulfilled, (state, action) => {
             state.bookings = state.bookings.filter(booking => booking.Reservation_ID !== action.payload);
             state.status = 'fulfilled';
         }).addCase(updateBookingThunk.fulfilled, (state, action) => {
-            let data = action.payload;
-            let index = state.bookings.findIndex(booking => booking.Reservation_ID === data.Reservation_ID)
-            state.bookings.splice(index, 1, data);
+            let index = state.bookings.findIndex(booking => booking.Reservation_ID === action.payload.Reservation_ID)
+            state.bookings.splice(index, 1, action.payload);
             state.status = 'fulfilled';
         }).addCase(createBookingThunk.fulfilled, (state, action) => {
             state.bookings = [...state.bookings, action.payload];
