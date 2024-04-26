@@ -1,12 +1,22 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Data_Table } from "../components/Data_Table";
 import { Header } from "../components/Header";
 import { Reviews } from "../components/Reviews";
 import { SideNav } from "../components/SideNav";
-import { reviews_data } from "../data";
+import { getAllReviews, getError, getReview, getStatus } from "../features/contact/contactSlice";
+import { useEffect } from "react";
+import { fecthAllReviewsThunk } from "../features/contact/contactThunk";
 
 export const Contact = (props) => {
+    const dispatch = useDispatch();
+    const allReviews = useSelector(getAllReviews);
+    const review = useSelector(getReview);
+    const status = useSelector(getStatus);
+    const error = useSelector(getError);
 
-    const data = reviews_data;
+    useEffect(() => {
+        dispatch(fecthAllReviewsThunk());
+    }, [])
     
     const cols = [
         {property: 'Date', display: data => (<div>{data.date}{data.hour}</div>)},
@@ -21,7 +31,7 @@ export const Contact = (props) => {
             <Header title={'Contact'} />
             <SideNav/>
             <Reviews />
-            <Data_Table cols={cols} data={data}/>
+            <Data_Table cols={cols} data={allReviews}/>
         </>
     );
 }
