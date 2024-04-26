@@ -10,7 +10,7 @@ export const fecthAllBookingsThunk = createAsyncThunk('bookings/fetchAllBookings
 });
 export const fecthBookingThunk = createAsyncThunk('bookings/fetchBooking', async (id) => {
     
-    const data = await delayFunction(bookings_data.filter(booking => booking.Reservation_ID === id));
+    const data = await delayFunction(bookings_data.find(booking => booking.Reservation_ID === id));
     return data;
     
 });

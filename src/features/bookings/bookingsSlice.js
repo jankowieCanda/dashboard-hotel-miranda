@@ -20,7 +20,7 @@ export const bookingsSlice = createSlice({
             state.bookings = action.payload;
             state.status = 'fulfilled';
         }).addCase(fecthBookingThunk.fulfilled, (state, action) => {
-            state.booking = state.bookings.filter(booking => booking.Reservation_ID === action.payload);
+            state.booking = state.bookings.find(booking => booking.Reservation_ID === action.payload);
             state.status = 'fulfilled';
         }).addCase(deleteBookingThunk.fulfilled, (state, action) => {
             state.bookings = state.bookings.filter(booking => booking.Reservation_ID !== action.payload);
