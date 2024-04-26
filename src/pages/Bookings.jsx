@@ -29,13 +29,21 @@ export const Bookings = (props) => {
         {property: 'Room Type', display: data => data.Room_Type},
         {property: 'Room Number', display: data => data.Room_Number},
         {property: 'Status', display: data => data.Status}
-    ];  
+    ];
+    
+    const tabs = [
+        {label: 'All Bookings'},
+        {label: 'Checking In'},
+        {label: 'Checking Out'},
+        {label: 'In Progress'},
+        {label: 'searchBooking', type: 'input'}
+    ];
 
     return(
         <>
             <Header title={'Bookings'} />
             <SideNav />
-            <Data_Table cols={cols} data={allBookings}/>
+            <Data_Table cols={cols} data={allBookings} tabs={tabs} />
             
         </>
     );

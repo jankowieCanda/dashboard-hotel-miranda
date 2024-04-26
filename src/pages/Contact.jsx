@@ -26,12 +26,17 @@ export const Contact = (props) => {
         {property: 'Action', display: data => (<button>Archive</button>)},
     ];
 
+    const tabs = [
+        {label: 'All Reviews'},
+        {label: 'Archived'}
+    ];
+
     return(
         <>
             <Header title={'Contact'} />
             <SideNav/>
             <Reviews />
-            <Data_Table cols={cols} data={allReviews}/>
+            <Data_Table cols={cols} data={allReviews} tabs={tabs} />
         </>
     );
 }

@@ -29,10 +29,17 @@ export const Users = () => {
         {property: 'Status', display: data => data.Status}
     ];
 
+    const tabs = [
+        {label: 'All Employees'},
+        {label: 'Active Employee'},
+        {label: 'Inactive Employee'},
+        {label: 'searchBooking', type: 'input'}
+    ];
+
     return(
         <>
             <Header title={'Users'} />
-            <Data_Table cols={cols} data={allUsers}/>
+            <Data_Table cols={cols} data={allUsers} tabs={tabs} />
             <SideNav />
         </>
     );

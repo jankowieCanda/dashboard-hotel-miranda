@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TableTabs } from "./TableTabs";
 
 const Table_Wrapper = styled.div`
     width: 70%;
@@ -21,6 +22,7 @@ export function Data_Table(props) {
     return(
         <>
             <Table_Wrapper>
+                <TableTabs tabs={props.tabs} />
                 <table>
                     <thead>
                         <tr>
