@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Data_Table } from "../components/Data_Table";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
-import { createRoomThunk, deleteRoomThunk, fecthAllRoomsThunk, fecthRoomThunk, updateRoomThunk } from "../features/rooms/roomsThunk";
+import { fecthAllRoomsThunk } from "../features/rooms/roomsThunk";
 import { getAllRooms, getError, getRoom, getStatus } from "../features/rooms/roomsSlice";
 import { useEffect } from "react";
 
@@ -14,26 +14,10 @@ export const Rooms = (props) => {
     const error = useSelector(getError);
 
     useEffect(() => {
-        if(status === 'pending') {
-            console.log('pending');
-        } else if(status === 'rejected') {
-            console.log(`${status} - ${error}`);
-        } else if(status === 'fulfilled') {
-            console.log('fulfilled');
-        } else if(status === 'idle') {
-            dispatch(fecthAllRoomsThunk());
-            /* dispatch(fecthRoomThunk(15));
-            dispatch(deleteRoomThunk(10));
-            dispatch(updateRoomThunk({"Picture":"https://robohash.org/etomnissed.png?size=50x50&set=set1","Room_Number":10,"Room_ID":11,"Room_Type":"Suite","Amenities":"TV, airconditioner, frigde, kitchen","Price":636,"Offer_Price":178,"Status":"Available"}));
-            dispatch(createRoomThunk({"Picture":"https://robohash.org/etomnissed.png?size=50x50&set=set1","Room_Number":42,"Room_ID":101,"Room_Type":"Single","Amenities":"TV","Price":636,"Offer_Price":178,"Status":"Available"})); */
-        }
-
-    }, [dispatch, allRooms])
+        dispatch(fecthAllRoomsThunk());
+    }, [])
     
-    /* console.log(allRooms)
-    console.log(room)
-    console.log(status) */
-    
+        
     const cols = [
         {property: '', display: data => (<img src={data.Picture} alt="picture"/>)},
         {property: 'Room Number', display: data => data.Room_Number},

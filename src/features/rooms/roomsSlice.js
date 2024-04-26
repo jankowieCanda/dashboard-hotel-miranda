@@ -20,17 +20,14 @@ export const roomsSlice = createSlice({
             state.rooms = action.payload;
             state.status = 'fulfilled';
         }).addCase(fecthRoomThunk.fulfilled, (state, action) => {
-            state.room = state.rooms.find(room => room.Room_ID === action.payload);
-            console.log(action.payload)
+            state.room = action.payload;
             state.status = 'fulfilled';
         }).addCase(deleteRoomThunk.fulfilled, (state, action) => {
             state.rooms = state.rooms.filter(room => room.Room_ID !== action.payload);
-            console.log(action.payload)
             state.status = 'fulfilled';
         }).addCase(updateRoomThunk.fulfilled, (state, action) => {
-            let data = action.payload;
-            let index = state.rooms.findIndex(room => room.Room_ID === data.Room_ID)
-            state.rooms.splice(index, 1, data);
+            let index = state.rooms.findIndex(room => room.Room_ID === action.payload.Room_ID)
+            state.rooms.splice(index, 1, action.payload);
             state.status = 'fulfilled';
         }).addCase(createRoomThunk.fulfilled, (state, action) => {
             state.rooms = [...state.rooms, action.payload];

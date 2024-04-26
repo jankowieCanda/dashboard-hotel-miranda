@@ -11,25 +11,24 @@ export const fecthAllRoomsThunk = createAsyncThunk('rooms/fetchAllRooms', async 
 export const fecthRoomThunk = createAsyncThunk('rooms/fetchRoom', async (id) => {
     
     const data = await delayFunction(rooms_data.find(room => room.Room_ID === id));
-    console.log(data)
     return data;
     
 });
 export const deleteRoomThunk = createAsyncThunk('rooms/deleteRoom', async (id) => {
     
-    const data = await delayFunction(rooms_data.filter(room => room.Room_ID !== id));
-    return data;
+    const data = await delayFunction();
+    return id;
     
 });
 export const updateRoomThunk = createAsyncThunk('rooms/updateRoom', async (obj) => {
     
-    const data = await delayFunction(obj);
-    return data;
+    const data = await delayFunction();
+    return obj;
     
 });
 export const createRoomThunk = createAsyncThunk('rooms/createRoom', async (obj) => {
     
-    const data = await delayFunction(obj);
-    return data;
+    const data = await delayFunction();
+    return obj;
     
 });
