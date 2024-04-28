@@ -22,7 +22,7 @@ export function Data_Table(props) {
     return(
         <>
             <Table_Wrapper>
-                <TableTabs tabs={props.tabs} />
+                <TableTabs tabs={props.tabs}/>
                 <table>
                     <thead>
                         <tr>
@@ -30,7 +30,7 @@ export function Data_Table(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {props.data.map(displayRow)}
+                        {props.orderedList? props.orderedList.map(displayRow) : props.data.map(displayRow)}
                     </tbody>
                 </table>
             </Table_Wrapper>
