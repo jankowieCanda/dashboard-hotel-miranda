@@ -2,22 +2,21 @@
 import { Data_Table } from "../components/Data_Table";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllBookings, getBooking, getError, getStatus } from "../features/bookings/bookingsSlice";
+import { getAllBookings } from "../features/bookings/bookingsSlice";
 import { useEffect, useState } from "react";
 import { fecthAllBookingsThunk } from "../features/bookings/bookingsThunk";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { AppDispatch, RootState } from "../app/store";
+import { Booking } from "../interfaces/BookingsInterfaces";
 
 
-export const Bookings = (props) => {
-    const dispatch = useDispatch();
-    const allBookings = useSelector(getAllBookings);
-    const booking = useSelector(getBooking);
-    const status = useSelector(getStatus);
-    const error = useSelector(getError);
-    const [orderedList, SetOrderedList] = useState();
+export const Bookings = (props: string) => {
+    const dispatch = useAppDispatch();
+    const allBookings: Booking[] = useAppSelector(getAllBookings);
+    const [orderedList, SetOrderedList] = useState<Booking[]>();
     
 
-    const orderByDate = (array, property) => {
+    const orderByDate = (array: Array<Booking>, property: keyof(Booking)) => {
         let orderedByDate = [...array];
         SetOrderedList(orderedByDate.sort((a, b) => new Date(a[property]) > new Date(b[property]) ? -1 : 1));
     }
@@ -26,23 +25,23 @@ export const Bookings = (props) => {
         dispatch(fecthAllBookingsThunk());
     }, [])
     
-    const cols = [
-        {property: 'Guest', display: data => data.Guest},
-        {property: 'Reservation ID', display: data => data.Reservation_ID},
-        {property: 'Order Date', display: data => new Date(data.Order_Date).toLocaleDateString()},
-        {property: 'Check In', display: data => new Date(data.Check_In).toLocaleDateString()},
-        {property: 'Check Out', display: data => new Date(data.Check_Out).toLocaleDateString()},
+    const cols: Object[] = [
+        {property: 'Guest', display: (data: Booking) => data.Guest},
+        {property: 'Reservation ID', display: (data: Booking) => data.Reservation_ID},
+        {property: 'Order Date', display: (data: Booking) => new Date(data.Order_Date).toLocaleDateString()},
+        {property: 'Check In', display: (data: Booking) => new Date(data.Check_In).toLocaleDateString()},
+        {property: 'Check Out', display: (data: Booking) => new Date(data.Check_Out).toLocaleDateString()},
         {property: 'Special Request', display: () => (<button>view notes</button>)},
-        {property: 'Room Type', display: data => data.Room_Type},
-        {property: 'Room Number', display: data => data.Room_Number},
-        {property: 'Status', display: data => data.Status}
+        {property: 'Room Type', display: (data: Booking) => data.Room_Type},
+        {property: 'Room Number', display: (data: Booking) => data.Room_Number},
+        {property: 'Status', display: (data: Booking) => data.Status}
     ];
     
-    const tabs = [
+    const tabs: Object[] = [
         {label: 'All Bookings', action: () => orderByDate(allBookings, 'Order_Date')},
         {label: 'Checking In', action: () => orderByDate(allBookings, 'Check_In')},
         {label: 'Checking Out', action: () => orderByDate(allBookings, 'Check_Out')},
-        {label: 'In Progress', action: () => orderByDate(allBookings.filter(booking => booking.Status === 'In Progress'), 'Order_Date')},
+        {label: 'In Progress', action: () => orderByDate(allBookings.filter((booking: Booking) => booking.Status === 'In Progress'), 'Order_Date')},
         {label: 'searchBooking', type: 'input'}
     ]; 
 
