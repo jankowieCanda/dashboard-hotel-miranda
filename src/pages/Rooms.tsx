@@ -1,29 +1,30 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Data_Table } from "../components/Data_Table";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { fecthAllRoomsThunk } from "../features/rooms/roomsThunk";
 import { getAllRooms } from "../features/rooms/roomsSlice";
 import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { Room } from "../interfaces/RoomsInterfaces";
 
 export const Rooms = () => {
-    const dispatch = useDispatch();
-    const allRooms = useSelector(getAllRooms);
+    const dispatch = useAppDispatch();
+    const allRooms: Room[] = useAppSelector(getAllRooms);
 
     useEffect(() => {
         dispatch(fecthAllRoomsThunk());
     }, [])
     
         
-    const cols = [
-        {property: '', display: data => (<img src={data.Picture} alt="picture"/>)},
-        {property: 'Room Number', display: data => data.Room_Number},
-        {property: 'Room ID', display: data => data.Room_ID},
-        {property: 'Room Type', display: data => data.Room_Type},
-        {property: 'Amenities', display: data => data.Amenities},
-        {property: 'Price', display: data => data.Price},
-        {property: 'Offer Price', display: data => data.Offer_Price},
-        {property: 'Status', display: data => data.Status}
+    const cols: Object[] = [
+        {property: '', display: (data: Room) => (<img src={data.Picture} alt="picture"/>)},
+        {property: 'Room Number', display: (data: Room) => data.Room_Number},
+        {property: 'Room ID', display: (data: Room) => data.Room_ID},
+        {property: 'Room Type', display: (data: Room) => data.Room_Type},
+        {property: 'Amenities', display: (data: Room) => data.Amenities},
+        {property: 'Price', display: (data: Room) => data.Price},
+        {property: 'Offer Price', display: (data: Room) => data.Offer_Price},
+        {property: 'Status', display: (data: Room) => data.Status}
     ];
       
     return(
