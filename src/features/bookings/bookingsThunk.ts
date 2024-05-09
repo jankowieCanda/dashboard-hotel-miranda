@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Booking } from "../../interfaces/bookinsInterfaces";
+import { Booking } from "../../interfaces/BookingsInterfaces";
 import { delayFunction } from '../../delay_function';
 import { bookings_data } from '../../data';
 

@@ -1,9 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { fecthAllReviewsThunk, fecthReviewThunk, deleteReviewThunk, updateReviewThunk } from './contactThunk';
+import { ContactState, Review } from '../../interfaces/ContactInterfaces';
+import { RootState } from '../../app/store';
 
 export const contactSlice = createSlice({
     name: 'contact',
-    initialState: {
+    initialState: <ContactState> {
         reviews: [],
         review: null,
         status: 'idle',
@@ -16,16 +18,16 @@ export const contactSlice = createSlice({
         }).addCase(fecthAllReviewsThunk.rejected, (state, action) => {
             state.status = 'rejected';
             state.error = action.error.message;
-        }).addCase(fecthAllReviewsThunk.fulfilled, (state, action) => {
+        }).addCase(fecthAllReviewsThunk.fulfilled, (state, action: PayloadAction<any>) => {
             state.reviews = action.payload;
             state.status = 'fulfilled';
-        }).addCase(fecthReviewThunk.fulfilled, (state, action) => {
+        }).addCase(fecthReviewThunk.fulfilled, (state, action: PayloadAction<any>) => {
             state.review = action.payload;
             state.status = 'fulfilled';
-        }).addCase(deleteReviewThunk.fulfilled, (state, action) => {
+        }).addCase(deleteReviewThunk.fulfilled, (state, action: PayloadAction<number>) => {
             state.reviews = state.reviews.filter(review => review.message_id !== action.payload);
             state.status = 'fulfilled';
-        }).addCase(updateReviewThunk.fulfilled, (state, action) => {
+        }).addCase(updateReviewThunk.fulfilled, (state, action: PayloadAction<Review>) => {
             let index = state.reviews.findIndex(review => review.message_id === action.payload.message_id)
             state.reviews.splice(index, 1, action.payload);
             state.status = 'fulfilled';
@@ -34,7 +36,7 @@ export const contactSlice = createSlice({
 });
 
 
-export const getAllReviews = state => state.contact.reviews;
-export const getReview = state => state.contact.review;
-export const getStatus = state => state.contact.status;
-export const getError = state => state.contact.error;
+export const getAllReviews = (state: RootState) => state.contact.reviews;
+export const getReview = (state: RootState) => state.contact.review;
+export const getStatus = (state: RootState) => state.contact.status;
+export const getError = (state: RootState) => state.contact.error;

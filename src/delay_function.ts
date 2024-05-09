@@ -1,6 +1,3 @@
-import { Type as T } from "typescript";
-import { Booking } from "./interfaces/bookinsInterfaces";
-
 
 
 export function delayFunction(data: Object[] | void, delay: number = 500) {

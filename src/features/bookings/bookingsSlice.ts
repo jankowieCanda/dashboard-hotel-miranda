@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { Booking, BookingsState } from '../../interfaces/bookinsInterfaces';
+import { Booking, BookingsState } from '../../interfaces/BookingsInterfaces';
 import { updateBookingThunk, deleteBookingThunk, fecthAllBookingsThunk, fecthBookingThunk, createBookingThunk } from './bookingsThunk';
 import { Type } from 'typescript';
 

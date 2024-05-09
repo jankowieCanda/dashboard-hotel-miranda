@@ -1,9 +1,8 @@
+import { InitialState } from "./InitialStateInterface"
 
-export interface BookingsState {
+export interface BookingsState extends InitialState {
     bookings: Array<Booking>,
     booking: Booking | null,
-    status: string,
-    error: string | null | undefined
 }
 
 export interface Booking {

@@ -1,4 +1,4 @@
-import { Booking } from "./interfaces/bookinsInterfaces";
+import { Booking } from "./interfaces/BookingsInterfaces";
 
 export const bookings_data = [
     {"Guest":"Hobie Treven","Reservation_ID":1,"Order_Date":"3/30/2024","Check_In":"8/8/2023","Check_Out":"7/18/2023","Special_Request":"aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem","Room_Type":"Suite","Room_Number":77,"Status":"In Progress"},
