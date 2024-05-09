@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Rooms } from './pages/Rooms.jsx';
-import { Room_Details } from './pages/Room_Details.jsx';
-import { Bookings } from './pages/Bookings.jsx';
-import { Booking_Details } from './pages/Booking_Details.jsx';
-import { Users } from './pages/Users.jsx';
-import { User_Details } from './pages/User_Details.jsx';
-import { Contact } from './pages/Contact.jsx';
-import { Login } from './pages/Login.jsx';
-import { Dashboard } from './pages/Dashboard.jsx';
-import { AuthProvider } from './components/AuthContext.jsx';
+import { Rooms } from './pages/Rooms';
+import { Room_Details } from './pages/Room_Details';
+import { Bookings } from './pages/Bookings';
+import { Booking_Details } from './pages/Booking_Details';
+import { Users } from './pages/Users';
+import { User_Details } from './pages/User_Details';
+import { Contact } from './pages/Contact';
+import { Login } from './pages/Login';
+import { Dashboard } from './pages/Dashboard';
+import { AuthProvider } from './components/AuthContext';
 import { Provider } from 'react-redux';
-import { store } from './app/store.ts';
+import { store } from './app/store';
 
 
 function App() {
