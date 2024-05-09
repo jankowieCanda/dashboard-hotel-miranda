@@ -1,32 +1,30 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Data_Table } from "../components/Data_Table";
 import { Header } from "../components/Header";
 import { Reviews } from "../components/Reviews";
 import { SideNav } from "../components/SideNav";
-import { getAllReviews, getError, getReview, getStatus } from "../features/contact/contactSlice";
+import { getAllReviews } from "../features/contact/contactSlice";
 import { useEffect } from "react";
 import { fecthAllReviewsThunk } from "../features/contact/contactThunk";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { Review } from "../interfaces/ContactInterfaces";
 
-export const Contact = (props) => {
-    const dispatch = useDispatch();
-    const allReviews = useSelector(getAllReviews);
-    const review = useSelector(getReview);
-    const status = useSelector(getStatus);
-    const error = useSelector(getError);
+export const Contact = () => {
+    const dispatch = useAppDispatch();
+    const allReviews: Review[] = useAppSelector(getAllReviews);
 
     useEffect(() => {
         dispatch(fecthAllReviewsThunk());
     }, [])
     
-    const cols = [
-        {property: 'Date', display: data => (<div>{data.date}{data.hour}</div>)},
-        {property: 'Message ID', display: data => data.message_id},
-        {property: 'Customer', display: data => (<div>{data.customer_name}{data.mail}{data.phone}</div>)},
-        {property: 'Subject', display: data => (<div><h3>{data.subject}</h3><p>{data.review}</p></div>)},
-        {property: 'Action', display: data => (<button>Archive</button>)},
+    const cols: Object[] = [
+        {property: 'Date', display: (data: Review) => (<div>{data.date}{data.hour}</div>)},
+        {property: 'Message ID', display: (data: Review) => data.message_id},
+        {property: 'Customer', display: (data: Review) => (<div>{data.customer_name}{data.mail}{data.phone}</div>)},
+        {property: 'Subject', display: (data: Review) => (<div><h3>{data.subject}</h3><p>{data.review}</p></div>)},
+        {property: 'Action', display: (data: Review) => (<button>Archive</button>)},
     ];
 
-    const tabs = [
+    const tabs: Object[] = [
         {label: 'All Reviews'},
         {label: 'Archived'}
     ];
