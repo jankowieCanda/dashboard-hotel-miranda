@@ -22,7 +22,7 @@ export function Data_Table(props) {
     return(
         <>
             <Table_Wrapper>
-                <TableTabs tabs={props.tabs}/>
+                {props.tabs ? <TableTabs tabs={props.tabs}/> : <></>}
                 <table>
                     <thead>
                         <tr>

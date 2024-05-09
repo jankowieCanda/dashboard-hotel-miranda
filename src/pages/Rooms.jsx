@@ -3,15 +3,12 @@ import { Data_Table } from "../components/Data_Table";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { fecthAllRoomsThunk } from "../features/rooms/roomsThunk";
-import { getAllRooms, getError, getRoom, getStatus } from "../features/rooms/roomsSlice";
+import { getAllRooms } from "../features/rooms/roomsSlice";
 import { useEffect } from "react";
 
-export const Rooms = (props) => {
+export const Rooms = () => {
     const dispatch = useDispatch();
     const allRooms = useSelector(getAllRooms);
-    const room = useSelector(getRoom);
-    const status = useSelector(getStatus);
-    const error = useSelector(getError);
 
     useEffect(() => {
         dispatch(fecthAllRoomsThunk());
