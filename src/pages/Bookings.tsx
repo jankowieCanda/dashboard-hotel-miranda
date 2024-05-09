@@ -6,7 +6,6 @@ import { getAllBookings } from "../features/bookings/bookingsSlice";
 import { useEffect, useState } from "react";
 import { fecthAllBookingsThunk } from "../features/bookings/bookingsThunk";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { AppDispatch, RootState } from "../app/store";
 import { Booking } from "../interfaces/BookingsInterfaces";
 
 

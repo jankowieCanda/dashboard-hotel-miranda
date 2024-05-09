@@ -1,4 +1,3 @@
-import { ComponentProps, ComponentPropsWithoutRef, PropsWithoutRef, ProviderProps } from "react";
 import { Header } from "../components/Header";
 import { KPIs } from "../components/KPIs";
 import { Reviews } from "../components/Reviews";
