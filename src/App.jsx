@@ -10,7 +10,7 @@ import { Login } from './pages/Login.jsx';
 import { Dashboard } from './pages/Dashboard.jsx';
 import { AuthProvider } from './components/AuthContext.jsx';
 import { Provider } from 'react-redux';
-import { store } from './app/store.js';
+import { store } from './app/store.ts';
 
 
 function App() {
