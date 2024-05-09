@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Booking } from "../interfaces/BookingsInterfaces";
 
 
-export const Bookings = (props: string) => {
+export const Bookings = () => {
     const dispatch = useAppDispatch();
     const allBookings: Booking[] = useAppSelector(getAllBookings);
     const [orderedList, SetOrderedList] = useState<Booking[]>();
