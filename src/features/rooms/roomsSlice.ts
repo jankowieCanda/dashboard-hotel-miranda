@@ -1,9 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { fecthAllRoomsThunk, fecthRoomThunk, deleteRoomThunk, updateRoomThunk, createRoomThunk } from './roomsThunk';
+import { Room, RoomsState } from '../../interfaces/RoomsInterfaces';
+import { RootState } from '../../app/store';
 
 export const roomsSlice = createSlice({
     name: 'rooms',
-    initialState: {
+    initialState: <RoomsState> {
         rooms: [],
         room: null,
         status: 'idle',
@@ -16,28 +18,27 @@ export const roomsSlice = createSlice({
         }).addCase(fecthAllRoomsThunk.rejected, (state, action) => {
             state.status = 'rejected';
             state.error = action.error.message;
-        }).addCase(fecthAllRoomsThunk.fulfilled, (state, action) => {
+        }).addCase(fecthAllRoomsThunk.fulfilled, (state, action: PayloadAction<any>) => {
             state.rooms = action.payload;
             state.status = 'fulfilled';
-        }).addCase(fecthRoomThunk.fulfilled, (state, action) => {
+        }).addCase(fecthRoomThunk.fulfilled, (state, action: PayloadAction<any>) => {
             state.room = action.payload;
             state.status = 'fulfilled';
-        }).addCase(deleteRoomThunk.fulfilled, (state, action) => {
+        }).addCase(deleteRoomThunk.fulfilled, (state, action: PayloadAction<number>) => {
             state.rooms = state.rooms.filter(room => room.Room_ID !== action.payload);
             state.status = 'fulfilled';
-        }).addCase(updateRoomThunk.fulfilled, (state, action) => {
+        }).addCase(updateRoomThunk.fulfilled, (state, action: PayloadAction<Room>) => {
             let index = state.rooms.findIndex(room => room.Room_ID === action.payload.Room_ID)
             state.rooms.splice(index, 1, action.payload);
             state.status = 'fulfilled';
-        }).addCase(createRoomThunk.fulfilled, (state, action) => {
+        }).addCase(createRoomThunk.fulfilled, (state, action: PayloadAction<Room>) => {
             state.rooms = [...state.rooms, action.payload];
             state.status = 'fulfilled';
         })
     }
 });
 
-/* export const bookingsReducer = bookingsSlice.reducer; */
-export const getAllRooms = state => state.rooms.rooms;
-export const getRoom = state => state.rooms.room;
-export const getStatus = state => state.rooms.status;
-export const getError = state => state.rooms.error;
+export const getAllRooms = (state: RootState) => state.rooms.rooms;
+export const getRoom = (state: RootState) => state.rooms.room;
+export const getStatus = (state: RootState) => state.rooms.status;
+export const getError = (state: RootState) => state.rooms.error;
