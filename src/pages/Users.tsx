@@ -6,6 +6,8 @@ import { fecthAllUsersThunk } from "../features/users/usersThunk";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { User } from "../interfaces/UsersInterfaces";
+import { Cols } from "../interfaces/ColsInterface";
+import { Tabs } from "../interfaces/TabsInterface";
 
 export const Users = () => {
     const dispatch = useAppDispatch();
@@ -16,7 +18,7 @@ export const Users = () => {
     }, [])
     
     
-    const cols: Object[] = [
+    const cols: Cols[] = [
         {property: '', display: (data: User) => (<img src={data.Picture} alt="picture"/>)},
         {property: 'Full Name', display: (data: User) => data.Full_Name},
         {property: 'Employee ID', display: (data: User) => data.Employee_ID},
@@ -27,7 +29,7 @@ export const Users = () => {
         {property: 'Status', display: (data: User) => data.Status}
     ];
 
-    const tabs: Object[] = [
+    const tabs: Tabs[] = [
         {label: 'All Employees'},
         {label: 'Active Employee'},
         {label: 'Inactive Employee'},

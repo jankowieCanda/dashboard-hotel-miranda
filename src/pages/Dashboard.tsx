@@ -3,11 +3,11 @@ import { KPIs } from "../components/KPIs";
 import { Reviews } from "../components/Reviews";
 import { SideNav } from "../components/SideNav";
 
-export const Dashboard = (props: any) => {
+export const Dashboard = () => {
 
     return (
         <>
-          <Header title={'Dashboard'} setAuth={props.setAuth}/>
+          <Header title={'Dashboard'} />
           <SideNav/>
           <KPIs />
           <Reviews />

@@ -6,6 +6,7 @@ import { getAllRooms } from "../features/rooms/roomsSlice";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Room } from "../interfaces/RoomsInterfaces";
+import { Cols } from "../interfaces/ColsInterface";
 
 export const Rooms = () => {
     const dispatch = useAppDispatch();
@@ -16,7 +17,7 @@ export const Rooms = () => {
     }, [])
     
         
-    const cols: Object[] = [
+    const cols: Cols[] = [
         {property: '', display: (data: Room) => (<img src={data.Picture} alt="picture"/>)},
         {property: 'Room Number', display: (data: Room) => data.Room_Number},
         {property: 'Room ID', display: (data: Room) => data.Room_ID},
