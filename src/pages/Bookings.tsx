@@ -7,12 +7,14 @@ import { useEffect, useState } from "react";
 import { fecthAllBookingsThunk } from "../features/bookings/bookingsThunk";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Booking } from "../interfaces/BookingsInterfaces";
+import { Tabs } from "../interfaces/TabsInterface";
+import { Cols } from "../interfaces/ColsInterface";
 
 
 export const Bookings = () => {
     const dispatch = useAppDispatch();
     const allBookings: Booking[] = useAppSelector(getAllBookings);
-    const [orderedList, SetOrderedList] = useState<Booking[]>();
+    const [orderedList, SetOrderedList] = useState<Booking[]>([]);
     
 
     const orderByDate = (array: Array<Booking>, property: keyof(Booking)) => {
@@ -24,7 +26,7 @@ export const Bookings = () => {
         dispatch(fecthAllBookingsThunk());
     }, [])
     
-    const cols: Object[] = [
+    const cols: Cols[] = [
         {property: 'Guest', display: (data: Booking) => data.Guest},
         {property: 'Reservation ID', display: (data: Booking) => data.Reservation_ID},
         {property: 'Order Date', display: (data: Booking) => new Date(data.Order_Date).toLocaleDateString()},
@@ -36,7 +38,7 @@ export const Bookings = () => {
         {property: 'Status', display: (data: Booking) => data.Status}
     ];
     
-    const tabs: Object[] = [
+    const tabs: Tabs[] = [
         {label: 'All Bookings', action: () => orderByDate(allBookings, 'Order_Date')},
         {label: 'Checking In', action: () => orderByDate(allBookings, 'Check_In')},
         {label: 'Checking Out', action: () => orderByDate(allBookings, 'Check_Out')},

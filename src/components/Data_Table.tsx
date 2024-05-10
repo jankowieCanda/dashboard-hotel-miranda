@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { TableTabs } from "./TableTabs";
+import { Props } from "../interfaces/PropsInterface";
+import { ReactElement } from "react";
 
 const Table_Wrapper = styled.div`
     width: 70%;
@@ -7,9 +9,9 @@ const Table_Wrapper = styled.div`
     margin-top: 7.6em;
 `;
 
-export function Data_Table(props) {
+export function Data_Table(props: Props) {
     
-    const displayRow = (row, i) => (
+    const displayRow = (row: any, i: number): ReactElement => (
         <tr key={i}>
             {props.cols.map(col => 
                 <td key={col.property}>
@@ -18,7 +20,8 @@ export function Data_Table(props) {
             )}
         </tr>
         
-    )   
+    );
+
     return(
         <>
             <Table_Wrapper>

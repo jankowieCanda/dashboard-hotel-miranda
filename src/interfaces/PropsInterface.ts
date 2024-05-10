@@ -1,4 +1,11 @@
+import { Cols } from "./ColsInterface";
+import { Tabs } from "./TabsInterface";
+import { Booking } from "./BookingsInterfaces";
 
-interface Props {
+export interface Props {
     title?: string,
+    cols: Cols[],
+    tabs: Tabs[],
+    orderedList: Booking[],
+    data: Booking[]
 }
