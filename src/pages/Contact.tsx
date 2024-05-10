@@ -35,7 +35,7 @@ export const Contact = () => {
         <>
             <Header title={'Contact'} />
             <SideNav/>
-            <Reviews />
+            <Reviews reviews={allReviews} />
             <Data_Table cols={cols} data={allReviews} tabs={tabs} />
         </>
     );

@@ -7,8 +7,12 @@ import { User } from "./UsersInterfaces";
 
 export interface Props {
     title?: string,
-    cols: Cols[],
+    cols?: Cols[],
     tabs?: Tabs[],
     orderedList?: Booking[],
-    data: Booking[] | Review[] | Room[] | User[]
+    data?: Booking[] | Review[] | Room[] | User[],
+}
+
+export interface ReviewsProps {
+    reviews: Review[],
 }

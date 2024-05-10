@@ -5,9 +5,9 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css/navigation';
 import 'swiper/css';
 import { faCheckCircle, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { fonts } from "../var";
-import { reviews_data} from '../data';
+import { ReviewsProps } from "../interfaces/PropsInterface";
 
 const Reviews_Container = styled.div`
     width: 75%;
@@ -74,11 +74,11 @@ const CustomerData = styled.div`
     }
 `;
 
-export const Reviews = () => {
+export const Reviews = (props: ReviewsProps) => {
     const swiper = useSwiper();
     const swiperSlide = useSwiperSlide();
-
-    const data = reviews_data.map((review) => {
+    
+    const data = props.reviews.map((review) => {
         return(
             <SwiperSlide>
                 <SliderData>

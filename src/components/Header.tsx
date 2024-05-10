@@ -6,6 +6,7 @@ import { fonts } from '../var';
 import { useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { AuthContext } from './AuthContext';
+import { Props } from '../interfaces/PropsInterface';
 
 const Header_Container = styled.header`
     width: 75%;
