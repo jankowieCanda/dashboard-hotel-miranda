@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope, faBell } from '@fortawesome/free-regular-svg-icons';
-import { LOCAL_AUTH, fonts } from '../var';
+import { fonts } from '../var';
 import { useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { AuthContext } from './AuthContext';
@@ -49,12 +49,11 @@ const Nav_Wrapper = styled.div`
     align-items: center;
 `;
 
-export const Header = (props) => {
+export const Header = (props: Props) => {
     const authcontext = useContext(AuthContext)
     const navigate = useNavigate();
 
-    const handleSignOutClick = () => {
-        localStorage.removeItem(LOCAL_AUTH);
+    const handleSignOutClick = (): void => {
         authcontext.dispatchSetAuthData('logout');
         navigate('/login');
     }

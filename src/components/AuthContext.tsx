@@ -1,21 +1,29 @@
-import { createContext, useReducer } from 'react';
+import { ReactNode, createContext, useReducer } from 'react';
 import { LOCAL_AUTH } from '../var';
 
-export const AuthContext = createContext(null);
+const initialState: AuthUser = {
+    isAuth: localStorage.getItem(LOCAL_AUTH) !== null,
+    name: '',
+    email: ''
+}
 
-const initialState = localStorage.getItem(LOCAL_AUTH) !== null ? localStorage.getItem(LOCAL_AUTH) : false;
-const reducer = (state, action) => {
+const reducer = (state: AuthUser, action: string) => {
     switch(action) {
         case 'login':
-            return state = true;
+            state = {isAuth: true, name: 'Gabriel', email: 'email@algo.com'};
+            localStorage.setItem(LOCAL_AUTH, JSON.stringify(state));
+            return state;
         case 'logout':
-            return state = false;
+            localStorage.removeItem(LOCAL_AUTH);
+            return state = {isAuth: false, name: '', email: ''};
         default:
             return state;
     }
 }
 
-export const AuthProvider = ({children}) => {
+export const AuthContext = createContext<AuthContext>({authData: initialState, dispatchSetAuthData: () => {}});
+
+export const AuthProvider = ({children}: {children: ReactNode}) => {
     const [authData, dispatchSetAuthData] = useReducer(reducer, initialState);
     
 
