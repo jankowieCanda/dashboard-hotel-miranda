@@ -103,7 +103,7 @@ export const Reviews = (props: ReviewsProps) => {
 
     return(
         <>
-            <Reviews_Container>
+            <Reviews_Container >
                 <div>
                     <h2>Latest Reviews by Customers</h2>
                     <Swiper 

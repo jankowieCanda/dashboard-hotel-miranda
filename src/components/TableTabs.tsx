@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { Props } from "../interfaces/PropsInterface";
 
 
 
 
-export const TableTabs = (props) => {
+export const TableTabs = (props: Props) => {
     
     return(
         <div>
-            {props.tabs.map((tab, i) => 
+            {props.tabs ? props.tabs.map((tab, i) => 
                 <>
                     {tab.type ? 
                         <>
@@ -15,10 +15,10 @@ export const TableTabs = (props) => {
                             <input key={tab.label} type="text" name={tab.label} id={tab.label} placeholder="Search by name..."/> 
                         </>
                         : 
-                        <button key={i} onClick={tab.action}>{tab.label}</button> 
+                        <button key={i} onClick={() => tab.action}>{tab.label}</button> 
                     }
                 </>
-            )}
+            ) : 'NoTabs'}
         </div>
     );
 }
