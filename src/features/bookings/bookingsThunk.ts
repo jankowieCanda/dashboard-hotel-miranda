@@ -2,11 +2,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Booking } from "../../interfaces/BookingsInterfaces";
 import { delayFunction } from '../../delay_function';
 import { bookings_data } from '../../data';
+import { FetchAPI } from "../../app/hooks";
 
 export const fecthAllBookingsThunk = createAsyncThunk('bookings/fetchAllBookings', async () => {
     
-    const data = await delayFunction(bookings_data);
-    return data;
+    const bookings = await FetchAPI('bookings');
+    return bookings.data;
     
 });
 export const fecthBookingThunk = createAsyncThunk('bookings/fetchBooking', async (id: number) => {

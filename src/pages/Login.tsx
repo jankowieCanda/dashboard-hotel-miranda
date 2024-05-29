@@ -1,6 +1,5 @@
 import { FormEvent, useContext, useState } from "react";
 import { useNavigate, Navigate } from "react-router";
-import { AUTH_EMAIL, AUTH_PASSWORD, LOCAL_AUTH } from "../var";
 import { AuthContext } from '../components/AuthContext';
 
 
@@ -10,16 +9,31 @@ export const Login = () => {
     const [emailInput, setEmailInput] = useState<string>('');
     const [passwordInput, setPasswordInput] = useState<string>('');
     let navigate = useNavigate();
-
-    const handleLoginSubmit = (e: FormEvent) => {
+    
+    const handleLoginSubmit = async (e: FormEvent) => {
         e.preventDefault();
         
-        if(emailInput != '' && emailInput === AUTH_EMAIL && passwordInput != '' && passwordInput === AUTH_PASSWORD) {
+        const formData = {email: emailInput, password: passwordInput}
+
+        const response = await fetch(import.meta.env.VITE_LOCAL_BASE_URL + 'login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        const data = await response.json()
+        if(response.ok) {
+            localStorage.setItem(import.meta.env.VITE_AUTH_TOKEN, data.token);
             authcontext.dispatchSetAuthData('login');
-            
             navigate('/');
+        } else {
+            alert('Login fail!!');
+            setEmailInput('');
+            setPasswordInput('');
         }
-        
+
+                
     }
 
     if(authcontext.authData.isAuth) {
@@ -29,7 +43,7 @@ export const Login = () => {
     return(
         <>
             <h1>Welcome to MiranDashboard</h1>
-            <form action="/" method="post" onSubmit={handleLoginSubmit}>
+            <form action="/" method="post" onSubmit={handleLoginSubmit} >
                 <label htmlFor="email">Email</label>
                 <input value={emailInput} name="email" id="email" type="email" onChange={(e) => setEmailInput(e.target.value)} />
                 <label htmlFor="password">Password</label>

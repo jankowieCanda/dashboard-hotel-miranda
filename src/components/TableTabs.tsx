@@ -11,11 +11,11 @@ export const TableTabs = (props: Props) => {
                 <>
                     {tab.type ? 
                         <>
-                            <label key={i} htmlFor={tab.label}></label>
-                            <input key={tab.label} type="text" name={tab.label} id={tab.label} placeholder="Search by name..."/> 
+                            <label key={tab.label} htmlFor={tab.label}></label>
+                            <input type="text" name={tab.label} id={tab.label} placeholder="Search by name..."/> 
                         </>
                         : 
-                        <button key={i} onClick={() => tab.action}>{tab.label}</button> 
+                        <button key={tab.label} onClick={() => tab.action}>{tab.label}</button> 
                     }
                 </>
             ) : 'NoTabs'}

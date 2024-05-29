@@ -80,7 +80,7 @@ export const Reviews = (props: ReviewsProps) => {
     
     const data = props.reviews.map((review) => {
         return(
-            <SwiperSlide>
+            <SwiperSlide key={review.message_id}>
                 <SliderData>
                     <div>
                         <h3>{review.subject}</h3>
