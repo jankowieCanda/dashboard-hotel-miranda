@@ -15,23 +15,22 @@ export const Bookings = () => {
     const dispatch = useAppDispatch();
     const allBookings: Booking[] = useAppSelector(getAllBookings);
     const [orderedList, SetOrderedList] = useState<Booking[]>([]);
-    
-
-    const orderByDate = (array: Array<Booking>, property: keyof(Booking)) => {
-        let orderedByDate = [...array];
-        SetOrderedList(orderedByDate.sort((a, b) => new Date(a[property]) > new Date(b[property]) ? -1 : 1));
-    }
 
     useEffect(() => {
         dispatch(fecthAllBookingsThunk());
-    }, [])
+    }, []);
+
+    const orderByDate = (array: Array<Booking>, property: keyof(Booking)) => {
+        let orderedByDate = [...array];
+        SetOrderedList(orderedByDate.sort((a, b) => a[property] > b[property] ? -1 : 1));
+    }
     
     const cols: Cols[] = [
         {property: 'Guest', display: (data: Booking) => data.Guest},
         {property: 'Reservation ID', display: (data: Booking) => data.Reservation_ID},
-        {property: 'Order Date', display: (data: Booking) => new Date(data.Order_Date).toLocaleDateString()},
-        {property: 'Check In', display: (data: Booking) => new Date(data.Check_In).toLocaleDateString()},
-        {property: 'Check Out', display: (data: Booking) => new Date(data.Check_Out).toLocaleDateString()},
+        {property: 'Order Date', display: (data: Booking) => data.Order_Date},
+        {property: 'Check In', display: (data: Booking) => data.Check_In},
+        {property: 'Check Out', display: (data: Booking) => data.Check_Out},
         {property: 'Special Request', display: () => (<button>view notes</button>)},
         {property: 'Room Type', display: (data: Booking) => data.Room_Type},
         {property: 'Room Number', display: (data: Booking) => data.Room_Number},

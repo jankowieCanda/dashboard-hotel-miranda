@@ -13,11 +13,11 @@ export function Data_Table(props: Props) {
     
     const displayRow = (row: any, i: number): ReactElement => (
         <tr key={i}>
-            {props.cols ? props.cols.map(col => 
+            {props.cols?.map(col => 
                 <td key={col.property}>
                     {col.display ? col.display(row) : row[col.property] }
                 </td>
-            ): 'No Data cols!'}
+            )}
         </tr>
         
     );
@@ -29,11 +29,11 @@ export function Data_Table(props: Props) {
                 <table>
                     <thead>
                         <tr>
-                            {props.cols ? props.cols.map(col => <th key={col.property}>{col.property}</th>) : 'No Data cols!'}
+                            {props.cols?.map(col => <th key={col.property}>{col.property}</th>)}
                         </tr>
                     </thead>
                     <tbody>
-                        {props.orderedList ? props.orderedList.map(displayRow) : props.data ? props.data.map(displayRow) : 'No Data!'}
+                        {props.data ? props.data.map(displayRow) : props.orderedList?.map(displayRow)}
                     </tbody>
                 </table>
             </Table_Wrapper>
