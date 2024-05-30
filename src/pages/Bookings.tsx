@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Booking } from "../interfaces/BookingsInterfaces";
 import { Tabs } from "../interfaces/TabsInterface";
 import { Cols } from "../interfaces/ColsInterface";
+import { Link } from "react-router-dom";
 
 
 export const Bookings = () => {

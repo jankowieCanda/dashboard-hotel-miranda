@@ -1,7 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Booking } from "../../interfaces/BookingsInterfaces";
-import { delayFunction } from '../../delay_function';
-import { bookings_data } from '../../data';
 import { FetchAPI } from "../../app/hooks";
 
 export const fecthAllBookingsThunk = createAsyncThunk('bookings/fetchAllBookings', async () => {
@@ -10,27 +8,27 @@ export const fecthAllBookingsThunk = createAsyncThunk('bookings/fetchAllBookings
     return bookings.data;
     
 });
-export const fecthBookingThunk = createAsyncThunk('bookings/fetchBooking', async (id: number) => {
+export const fecthBookingThunk = createAsyncThunk('bookings/fetchBooking', async (id: string) => {
     
-    const data = await delayFunction(bookings_data.filter((booking: Booking) => booking.Reservation_ID === id));
-    return data;
+    const booking = await FetchAPI(`bookings/${id}`);
+    return booking.data;
     
 });
-export const deleteBookingThunk = createAsyncThunk('bookings/deleteBooking', async (id: number) => {
+export const deleteBookingThunk = createAsyncThunk('bookings/deleteBooking', async (id: string) => {
     
-    const data = await delayFunction();
-    return id;
+    const booking = await FetchAPI(`bookings/${id}`);
+    return booking.data._id;
     
 });
 export const updateBookingThunk = createAsyncThunk('bookings/updateBooking', async (obj: Booking) => {
     
-    const data = await delayFunction();
-    return obj;
+    const booking = await FetchAPI(`bookings/${obj._id}`, 'PATCH', obj);
+    return booking.data;
     
 });
 export const createBookingThunk = createAsyncThunk('bookings/createBooking', async (obj: Booking) => {
     
-    const data = await delayFunction();
-    return obj;
+    const booking = await FetchAPI('bookings', 'POST', obj);
+    return booking.data;
     
 });

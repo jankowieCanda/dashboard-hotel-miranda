@@ -6,6 +6,7 @@ export interface BookingsState extends InitialState {
 }
 
 export interface Booking {
+    _id?: string,
     Guest: string,
     Reservation_ID: number,
     Order_Date: string,
