@@ -25,10 +25,10 @@ export const usersSlice = createSlice({
             state.user = action.payload;
             state.status = 'fulfilled';
         }).addCase(deleteUserThunk.fulfilled, (state, action: PayloadAction<string>) => {
-            state.users = state.users.filter(user => user.Employee_ID !== action.payload);
+            state.users = state.users.filter(user => user._id !== action.payload);
             state.status = 'fulfilled';
         }).addCase(updateUserThunk.fulfilled, (state, action: PayloadAction<User>) => {
-            let index = state.users.findIndex(user => user.Employee_ID === action.payload.Employee_ID)
+            let index = state.users.findIndex(user => user._id === action.payload._id)
             state.users.splice(index, 1, action.payload);
             state.status = 'fulfilled';
         }).addCase(createUserThunk.fulfilled, (state, action: PayloadAction<User>) => {

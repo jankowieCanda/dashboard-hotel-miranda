@@ -6,6 +6,7 @@ export interface UsersState extends InitialState{
 }
 
 export interface User {
+    _id?: string,
     Picture: string,
     Full_Name: string,
     Employee_ID: string,
