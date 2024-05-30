@@ -24,11 +24,11 @@ export const roomsSlice = createSlice({
         }).addCase(fecthRoomThunk.fulfilled, (state, action: PayloadAction<any>) => {
             state.room = action.payload;
             state.status = 'fulfilled';
-        }).addCase(deleteRoomThunk.fulfilled, (state, action: PayloadAction<number>) => {
-            state.rooms = state.rooms.filter(room => room.Room_ID !== action.payload);
+        }).addCase(deleteRoomThunk.fulfilled, (state, action: PayloadAction<string>) => {
+            state.rooms = state.rooms.filter(room => room._id !== action.payload);
             state.status = 'fulfilled';
         }).addCase(updateRoomThunk.fulfilled, (state, action: PayloadAction<Room>) => {
-            let index = state.rooms.findIndex(room => room.Room_ID === action.payload.Room_ID)
+            let index = state.rooms.findIndex(room => room._id === action.payload._id)
             state.rooms.splice(index, 1, action.payload);
             state.status = 'fulfilled';
         }).addCase(createRoomThunk.fulfilled, (state, action: PayloadAction<Room>) => {

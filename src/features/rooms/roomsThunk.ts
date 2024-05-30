@@ -1,35 +1,34 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { delayFunction } from '../../delay_function';
-import { rooms_data } from '../../data';
 import { Room } from "../../interfaces/RoomsInterfaces";
+import { FetchAPI } from "../../app/hooks";
 
 export const fecthAllRoomsThunk = createAsyncThunk('rooms/fetchAllRooms', async () => {
     
-    const data = await delayFunction(rooms_data);
-    return data;
+    const rooms = await FetchAPI('rooms');
+    return rooms.data;
     
 });
-export const fecthRoomThunk = createAsyncThunk('rooms/fetchRoom', async (id: number) => {
+export const fecthRoomThunk = createAsyncThunk('rooms/fetchRoom', async (id: string) => {
     
-    const data = await delayFunction(rooms_data.filter((room: Room) => room.Room_ID === id));
-    return data;
+    const room = await FetchAPI(`rooms/${id}`);
+    return room.data;
     
 });
-export const deleteRoomThunk = createAsyncThunk('rooms/deleteRoom', async (id: number) => {
+export const deleteRoomThunk = createAsyncThunk('rooms/deleteRoom', async (id: string) => {
     
-    const data = await delayFunction();
-    return id;
+    const room = await FetchAPI(`rooms/${id}`, 'DELETE');
+    return room.data._id;
     
 });
 export const updateRoomThunk = createAsyncThunk('rooms/updateRoom', async (obj: Room) => {
     
-    const data = await delayFunction();
-    return obj;
+    const room = await FetchAPI(`rooms/${obj._id}`, 'PATCH', obj);
+    return room.data._id;
     
 });
 export const createRoomThunk = createAsyncThunk('rooms/createRoom', async (obj: Room) => {
     
-    const data = await delayFunction();
-    return obj;
+    const room = await FetchAPI(`rooms`, 'POST', obj);
+    return room.data;
     
 });

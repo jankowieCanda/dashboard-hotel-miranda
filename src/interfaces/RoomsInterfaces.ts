@@ -6,6 +6,7 @@ export interface RoomsState extends InitialState{
 }
 
 export interface Room {
+    _id?: string,
     Picture: string,
     Room_Number: number,
     Room_ID: number,
