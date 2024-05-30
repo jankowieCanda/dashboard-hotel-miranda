@@ -87,7 +87,7 @@ export const Reviews = (props: ReviewsProps) => {
                         <p>{review.review}</p>   
                     </div>
                     <CustomerData>
-                        <img src={review.picture} alt="picture" />
+                        <img src={review.picture} alt="picture" style={{width: "50px", height: "50px"}} />
                         <div>
                             <p>{review.customer_name}</p>
                             <small>{review.phone}</small>

@@ -24,11 +24,11 @@ export const contactSlice = createSlice({
         }).addCase(fecthReviewThunk.fulfilled, (state, action: PayloadAction<any>) => {
             state.review = action.payload;
             state.status = 'fulfilled';
-        }).addCase(deleteReviewThunk.fulfilled, (state, action: PayloadAction<number>) => {
-            state.reviews = state.reviews.filter(review => review.message_id !== action.payload);
+        }).addCase(deleteReviewThunk.fulfilled, (state, action: PayloadAction<string>) => {
+            state.reviews = state.reviews.filter(review => review._id !== action.payload);
             state.status = 'fulfilled';
         }).addCase(updateReviewThunk.fulfilled, (state, action: PayloadAction<Review>) => {
-            let index = state.reviews.findIndex(review => review.message_id === action.payload.message_id)
+            let index = state.reviews.findIndex(review => review._id === action.payload._id)
             state.reviews.splice(index, 1, action.payload);
             state.status = 'fulfilled';
         })

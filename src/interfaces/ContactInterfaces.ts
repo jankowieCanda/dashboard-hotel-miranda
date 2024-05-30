@@ -6,6 +6,7 @@ export interface ContactState extends InitialState{
 }
 
 export interface Review {
+    _id?: string,
     date: string,
     hour: string,
     message_id: number,

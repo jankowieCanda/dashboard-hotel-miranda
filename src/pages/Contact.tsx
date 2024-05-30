@@ -3,7 +3,7 @@ import { Header } from "../components/Header";
 import { Reviews } from "../components/Reviews";
 import { SideNav } from "../components/SideNav";
 import { getAllReviews } from "../features/contact/contactSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fecthAllReviewsThunk } from "../features/contact/contactThunk";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Review } from "../interfaces/ContactInterfaces";
@@ -13,9 +13,15 @@ import { Tabs } from "../interfaces/TabsInterface";
 export const Contact = () => {
     const dispatch = useAppDispatch();
     const allReviews: Review[] = useAppSelector(getAllReviews);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const initialFetch = async () => {
+        await dispatch(fecthAllReviewsThunk());
+        setIsLoading(false); 
+    }
 
     useEffect(() => {
-        dispatch(fecthAllReviewsThunk());
+        initialFetch();
     }, [])
     
     const cols: Cols[] = [

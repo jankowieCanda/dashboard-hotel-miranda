@@ -2,27 +2,29 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { delayFunction } from '../../delay_function';
 import { reviews_data } from '../../data';
 import { Review } from "../../interfaces/ContactInterfaces";
+import { FetchAPI } from "../../app/hooks";
 
 export const fecthAllReviewsThunk = createAsyncThunk('contact/fetchAllReviews', async () => {
     
-    return await delayFunction(reviews_data);
+    const reviews = await FetchAPI('contact');
+    return reviews.data;
     
 });
-export const fecthReviewThunk = createAsyncThunk('contact/fetchReview', async (id: number) => {
+export const fecthReviewThunk = createAsyncThunk('contact/fetchReview', async (id: string) => {
     
-    const data = await delayFunction(reviews_data.filter((review: Review) => review.message_id === id));
-    return data;
+    const review = await FetchAPI(`contact/${id}`);
+    return review.data;
     
 });
-export const deleteReviewThunk = createAsyncThunk('contact/deleteReview', async (id: number) => {
+export const deleteReviewThunk = createAsyncThunk('contact/deleteReview', async (id: string) => {
     
-    const data = await delayFunction();
-    return id;
+    const review = await FetchAPI(`contact/${id}`, 'DELETE');
+    return review.data._id;
     
 });
 export const updateReviewThunk = createAsyncThunk('contact/updateReview', async (obj: Review) => {
     
-    const data = await delayFunction();
-    return obj;
+    const review = await FetchAPI(`contact/${obj._id}`, 'PATCH', obj);
+    return review.data;
     
 });
