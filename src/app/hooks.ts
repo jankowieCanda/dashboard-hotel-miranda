@@ -1,6 +1,5 @@
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from './store';
-import { JsTyping, Type } from 'typescript';
 
 const LOCAL_URL: string = import.meta.env.VITE_LOCAL_BASE_URL;
 
