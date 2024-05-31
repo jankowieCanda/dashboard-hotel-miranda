@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faSignOut } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft as hide, faChevronRight as show, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope, faBell } from '@fortawesome/free-regular-svg-icons';
 import { fonts } from '../var';
 import { useNavigate } from 'react-router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { Props } from '../interfaces/PropsInterface';
+import { ShowHideContext } from './ShowHideContext';
 
-const Header_Container = styled.header`
+let Header_Container = styled.header`
     width: 75%;
     height: 7.5em;
     margin: 0 auto;
@@ -52,11 +53,34 @@ const Nav_Wrapper = styled.div`
 
 export const Header = (props: Props) => {
     const authcontext = useContext(AuthContext)
+    const showHideContext = useContext(ShowHideContext); 
     const navigate = useNavigate();
+    const [showHideIcon, setShowHideIcon] = useState(hide);
 
     const handleSignOutClick = (): void => {
         authcontext.dispatchSetAuthData('logout');
         navigate('/login');
+    };
+
+    const handleShowHideSideNav = (): void => {
+        if(showHideIcon === hide) {
+            setShowHideIcon(show);
+            showHideContext.dispatchSetIsHide('hide');
+            Header_Container = styled(Header_Container)`
+                & {
+                    width: 100%;
+                }
+            `
+            
+        } else {
+            setShowHideIcon(hide);
+            showHideContext.dispatchSetIsHide('show');
+            Header_Container = styled(Header_Container)`
+                & {
+                    width: 75%;
+                }
+            `
+        }
     }
 
     return(
@@ -64,7 +88,7 @@ export const Header = (props: Props) => {
             <Header_Container>
                 <Superior_Menu>
                     <Nav_Wrapper>
-                        <FontAwesomeIcon icon={faChevronRight}/>
+                        <FontAwesomeIcon icon={showHideIcon} onClick={handleShowHideSideNav}/>
                         <Title>
                             {props.title}
                         </Title>

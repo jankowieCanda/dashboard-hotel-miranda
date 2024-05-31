@@ -7,6 +7,7 @@ import { SideNav } from "../components/SideNav";
 import { getAllReviews } from "../features/contact/contactSlice";
 import { Review } from "../interfaces/ContactInterfaces";
 import { fecthAllReviewsThunk } from "../features/contact/contactThunk";
+import { BodyContainer } from "../components/BodyContainer";
 
 export const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -20,8 +21,10 @@ export const Dashboard = () => {
         <>
           <Header title={'Dashboard'} />
           <SideNav/>
+          <BodyContainer>
           <KPIs />
           <Reviews reviews={allReviews} />
+          </BodyContainer>
         </>
     )
 }

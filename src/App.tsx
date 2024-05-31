@@ -11,26 +11,31 @@ import { Dashboard } from './pages/Dashboard';
 import { AuthProvider } from './components/AuthContext';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import { ShowHideProvider } from './components/ShowHideContext';
 
 
 function App() {
-  
+    
   return (
     <>
       <Provider store={store}>
         <BrowserRouter>
           <AuthProvider>
+            <ShowHideProvider>
             <Routes>
               <Route path='/login' element={<Login />} />
-              <Route path='/' element={<Dashboard />} />
-              <Route path='/bookings' element={<Bookings />} />
-              <Route path='/bookings/:id' element={<Booking_Details />} />
-              <Route path='/rooms' element={<Rooms />} />
-              <Route path='/rooms/:id' element={<Room_Details />} />
-              <Route path='/contact' element={<Contact />} />
-              <Route path='/users' element={<Users />} />
-              <Route path='/users/:id' element={<User_Details />} />
+              
+                <Route path='/' element={<Dashboard />} />
+                <Route path='/bookings' element={<Bookings />} />
+                <Route path='/bookings/:id' element={<Booking_Details />} />
+                <Route path='/rooms' element={<Rooms />} />
+                <Route path='/rooms/:id' element={<Room_Details />} />
+                <Route path='/contact' element={<Contact />} />
+                <Route path='/users' element={<Users />} />
+                <Route path='/users/:id' element={<User_Details />} />
+              
             </Routes>
+            </ShowHideProvider>
           </AuthProvider>
         </BrowserRouter>
       </Provider>

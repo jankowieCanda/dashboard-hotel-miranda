@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChalkboard, faKey, faPhone, faUsers } from '@fortawesome/free-solid-svg-icons';
@@ -6,8 +6,11 @@ import { faCalendarCheck, } from '@fortawesome/free-regular-svg-icons';
 import { Footer } from './Footer';
 import { Logo } from './Logo';
 import { fonts } from '../var';
+import { useContext } from 'react';
+import { ShowHideContext } from './ShowHideContext';
 
-const Nav_Container = styled.nav`
+
+let Nav_Container = styled.nav`
     width: 25%;
     position: fixed;
     top: 0;
@@ -51,6 +54,20 @@ const UserBox = styled.div`
 
 
 export const SideNav = () => {
+    const showHideContext = useContext(ShowHideContext);
+    if(showHideContext.isHide) {
+        Nav_Container = styled(Nav_Container)`
+            & {
+                display: none !important;
+            }
+        `
+    } else {
+        Nav_Container = styled(Nav_Container)`
+            & {
+                display: block !important;
+            }
+        `
+    }
 
     return(
         <>
