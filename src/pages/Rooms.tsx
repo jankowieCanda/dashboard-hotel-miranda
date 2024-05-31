@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Room } from "../interfaces/RoomsInterfaces";
 import { Cols } from "../interfaces/ColsInterface";
+import { BodyContainer } from "../components/BodyContainer";
 
 export const Rooms = () => {
     const dispatch = useAppDispatch();
@@ -39,8 +40,10 @@ export const Rooms = () => {
             {isLoading ? <p>loading...</p> :
                 <>
                     <Header title={'Rooms'} />
-                    <Data_Table cols={cols} data={allRooms}/>
                     <SideNav />
+                    <BodyContainer>
+                        <Data_Table cols={cols} data={allRooms}/>
+                    </BodyContainer>
                 </>
             }
         </>

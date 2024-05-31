@@ -9,21 +9,27 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Booking } from "../interfaces/BookingsInterfaces";
 import { Tabs } from "../interfaces/TabsInterface";
 import { Cols } from "../interfaces/ColsInterface";
-import { Link } from "react-router-dom";
+import { BodyContainer } from "../components/BodyContainer";
 
 
 export const Bookings = () => {
     const dispatch = useAppDispatch();
     const allBookings: Booking[] = useAppSelector(getAllBookings);
     const [orderedList, SetOrderedList] = useState<Booking[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const initialFetch = async () => {
+        await dispatch(fecthAllBookingsThunk());
+        setIsLoading(false);
+    };
 
     useEffect(() => {
-        dispatch(fecthAllBookingsThunk());
+        initialFetch();
     }, []);
 
     const orderByDate = (array: Array<Booking>, property: keyof(Booking)) => {
         let orderedByDate = [...array];
-        SetOrderedList(orderedByDate.sort((a, b) => a[property] > b[property] ? -1 : 1));
+        SetOrderedList(orderedByDate.sort((a, b) => a[property]! > b[property]! ? -1 : 1));
     }
     
     const cols: Cols[] = [
@@ -48,10 +54,15 @@ export const Bookings = () => {
 
     return(
         <>
-            <Header title={'Bookings'} />
-            <SideNav />
-            <Data_Table cols={cols} data={allBookings} tabs={tabs} orderedList={orderedList}/>
-            
+            {isLoading ? <p>loading...</p> :
+            <>
+                <Header title={'Bookings'} />
+                <SideNav />
+                <BodyContainer>
+                    <Data_Table cols={cols} data={allBookings} tabs={tabs} orderedList={orderedList}/>
+                </BodyContainer>
+            </>
+            }
         </>
     );
 }

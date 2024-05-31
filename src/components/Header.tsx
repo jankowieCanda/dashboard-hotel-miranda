@@ -8,6 +8,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { Props } from '../interfaces/PropsInterface';
 import { ShowHideContext } from './ShowHideContext';
+import { Icon } from './Icon';
 
 let Header_Container = styled.header`
     width: 75%;
@@ -19,6 +20,7 @@ let Header_Container = styled.header`
     top: 0;
     right: 0;
     background-color: #ffffff;
+    z-index: 2;
 `;
 
 const Title = styled.h1`
@@ -88,7 +90,7 @@ export const Header = (props: Props) => {
             <Header_Container>
                 <Superior_Menu>
                     <Nav_Wrapper>
-                        <FontAwesomeIcon icon={showHideIcon} onClick={handleShowHideSideNav}/>
+                        <Icon icon={showHideIcon} onClick={handleShowHideSideNav} />
                         <Title>
                             {props.title}
                         </Title>
@@ -96,7 +98,7 @@ export const Header = (props: Props) => {
                     <Nav_Wrapper>
                         <FontAwesomeIcon icon={faEnvelope}/>
                         <FontAwesomeIcon icon={faBell}/>
-                        <FontAwesomeIcon icon={faSignOut} onClick={handleSignOutClick}/>
+                        <Icon icon={faSignOut} onClick={handleSignOutClick}/>
                     </Nav_Wrapper>
                 </Superior_Menu>
             </Header_Container>

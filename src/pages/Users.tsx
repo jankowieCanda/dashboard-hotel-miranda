@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { User } from "../interfaces/UsersInterfaces";
 import { Cols } from "../interfaces/ColsInterface";
 import { Tabs } from "../interfaces/TabsInterface";
+import { BodyContainer } from "../components/BodyContainer";
 
 export const Users = () => {
     const dispatch = useAppDispatch();
@@ -47,8 +48,10 @@ export const Users = () => {
         {isLoading ? <p>loading...</p> :
             <>
             <Header title={'Users'} />
-            <Data_Table cols={cols} data={allUsers} tabs={tabs} />
             <SideNav />
+            <BodyContainer>
+                <Data_Table cols={cols} data={allUsers} tabs={tabs} />
+            </BodyContainer>
             </>
         }
         </>

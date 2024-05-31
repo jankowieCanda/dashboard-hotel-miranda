@@ -22,8 +22,8 @@ export const Dashboard = () => {
           <Header title={'Dashboard'} />
           <SideNav/>
           <BodyContainer>
-          <KPIs />
-          <Reviews reviews={allReviews} />
+            <KPIs />
+            <Reviews reviews={allReviews} />
           </BodyContainer>
         </>
     )

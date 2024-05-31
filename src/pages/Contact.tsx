@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Review } from "../interfaces/ContactInterfaces";
 import { Cols } from "../interfaces/ColsInterface";
 import { Tabs } from "../interfaces/TabsInterface";
+import { BodyContainer } from "../components/BodyContainer";
 
 export const Contact = () => {
     const dispatch = useAppDispatch();
@@ -41,8 +42,10 @@ export const Contact = () => {
         <>
             <Header title={'Contact'} />
             <SideNav/>
-            <Reviews reviews={allReviews} />
-            <Data_Table cols={cols} data={allReviews} tabs={tabs} />
+            <BodyContainer>
+                <Reviews reviews={allReviews} />
+                <Data_Table cols={cols} data={allReviews} tabs={tabs} />
+            </BodyContainer>
         </>
     );
 }
